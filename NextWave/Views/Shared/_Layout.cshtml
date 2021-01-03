@@ -1,1 +1,33 @@
-﻿
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+    @await Html.PartialAsync("MetatagsPartial")
+    @await Html.PartialAsync("ScriptsPartial")
+</head>
+<body>
+
+<div id="wrapper">
+        
+    @await Html.PartialAsync("HeaderPartial")
+
+    <div class="container">
+
+        @await Html.PartialAsync("NavPartial")
+    </div>
+    <div class="container">
+        <div id="main">
+            <div class="row">
+                <div class="12u">
+                    <section>
+                        @RenderBody()
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("FooterPartial")
+</div>
+
+</body>
+</html>
