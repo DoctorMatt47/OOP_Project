@@ -1,4 +1,4 @@
-/*
+﻿/*
 	Eleganta by TEMPLATED
     templated.co @templatedco
     Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
@@ -12,7 +12,7 @@
 
 	body
 	{
-		background: #2b140a;
+		background: #191369;
 	}
 
 	body,input,textarea,select
@@ -49,7 +49,7 @@
 	/* Don't forget to set this to something that matches the design */
 	a
 	{
-		color: #FD5113;
+		color: #72bcf5;
 	}
 
 	a:hover
@@ -258,7 +258,7 @@
 			
 			ul.list .date
 			{
-				background: none repeat scroll 0 0 #D34C0D;
+				background: none repeat scroll 0 0 #77a9c0;
 				color: #FFFFFF;
 				float: left;
 				font-family: 'Abel',sans-serif;
@@ -751,7 +751,7 @@
 	#wrapper
 	{
 		padding-bottom: 4em;
-		background: #552713;
+		background: #1b1170;
 	}
 
 /*********************************************************************************/
@@ -793,7 +793,7 @@
 
 	#main
 	{
-		background: #FFF;
+		background: #e7e1e1;
 	}
 	
 	.homepage #main
