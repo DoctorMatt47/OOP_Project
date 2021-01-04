@@ -15,18 +15,19 @@
 		background: #191369;
 	}
 
-	body,input,textarea,select
-	{
-		font-family: 'Open Sans', sans-serif;
-		line-height: 1.75em;
-		font-size: 11pt;
-		font-weight: 300;
-	}
+body, input, textarea, select 
+{
+    font: italic small-caps bold 16px/2 cursive;
+	line-height: 1.75em;
+	font-size: 11pt;
+	font-weight: 300;
+}
 
-	h1,h2,h3,h4,h5,h6
-	{
-		font-weight: bold;
-	}
+h1, h2, h3, h4, h5, h6 
+{
+    font: italic small-caps bold 18px/2 cursive;
+	font-weight: bold;
+}
 	
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
 		{
@@ -748,11 +749,11 @@
 /* Wrapper                                                                       */
 /*********************************************************************************/
 
-	#wrapper
-	{
-		padding-bottom: 4em;
+#wrapper
+{
+    padding-bottom: 4em;
 		background: #1b1170;
-	}
+}
 
 /*********************************************************************************/
 /* Header                                                                        */
@@ -791,10 +792,10 @@
 /* Main                                                                          */
 /*********************************************************************************/
 
-	#main
-	{
-		background: #e7e1e1;
-	}
+#main 
+{
+    background: #e7e1e1;
+}
 	
 	.homepage #main
 	{
