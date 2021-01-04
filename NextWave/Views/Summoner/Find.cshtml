@@ -1,0 +1,20 @@
+﻿@using NextWave.Models
+<div>
+    @if (ViewBag.Summoner == null)
+    {
+        <div>
+            We can not find summoner with this name. Please, try again
+        </div><br>
+    }
+    else
+    {
+<div>
+    Summoner name : @ViewBag.Summoner.Name<br>
+    Summoner level : @ViewBag.Summoner.SummonerLevel<br>
+    Summoner icon : @ViewBag.Summoner.ProfileIconId<br>
+    Summoner id : @ViewBag.Summoner.Id<br>
+    Summoner puuid : @ViewBag.Summoner.Puuid<br>
+    Summoner account id : @ViewBag.Summoner.AccountId<br>
+</div>
+    }
+</div>

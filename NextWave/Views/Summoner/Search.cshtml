@@ -1,0 +1,13 @@
+﻿<script>
+    function reference()
+    {
+        const name = document.querySelector('input').value;
+        location.href = `https://localhost:5001/Summoner/Find/${name}`;
+    }
+</script>
+
+<div>
+    Enter summoner name:<br>
+    <input type="text" name="summonerName" id="summonerName" />
+    <button onclick="reference()">Search</button>
+</div>
