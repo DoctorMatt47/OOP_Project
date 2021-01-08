@@ -4,17 +4,47 @@
     {
         <div>
             We can not find summoner with this name. Please, try again
-        </div><br>
+        </div>
     }
     else
     {
-<div>
-    Summoner name : @ViewBag.Summoner.Name<br>
-    Summoner level : @ViewBag.Summoner.SummonerLevel<br>
-    Summoner icon : @ViewBag.Summoner.ProfileIconId<br>
-    Summoner id : @ViewBag.Summoner.Id<br>
-    Summoner puuid : @ViewBag.Summoner.Puuid<br>
-    Summoner account id : @ViewBag.Summoner.AccountId<br>
-</div>
+        <div>
+            Summoner name : @ViewBag.Summoner.Name<br>
+            Summoner level : @ViewBag.Summoner.SummonerLevel<br>
+            Summoner icon : @ViewBag.Summoner.ProfileIconId<br>
+            Summoner id : @ViewBag.Summoner.Id<br>
+            Summoner puuid : @ViewBag.Summoner.Puuid<br>
+            Summoner account id : @ViewBag.Summoner.AccountId<br>
+            @if (ViewBag.Leagues != null)
+            {
+                @foreach (var value in ViewBag.Leagues)
+                {
+                    <div>
+                        League queueType : @value.QueueType<br>
+                        League tier : @value.Tier<br>
+                        League rank : @value.Rank<br>
+                        League wins : @value.Wins<br>
+                        League losses : @value.Losses<br>
+                    </div>
+                }
+            }
+            @if (ViewBag.MatchHistory != null)
+            {
+                <table>
+                    <tr>
+                        <th>GameId</th>
+                        <th>Champion</th>
+                        <th>Queue</th>
+                        <th>Season</th>
+                        <th>Role</th>
+                        <th>Lane</th>
+                    </tr>
+                    @foreach (var value in ViewBag.MatchHistory.Matches)
+                    {
+                        <tr><td>@value.GameId</td><td>@value.Champion</td><td>@value.Queue</td><td>@value.Season</td><td>@value.Role</td><td>@value.Lane</td></tr>
+                    }
+                </table>
+            }
+        </div>
     }
 </div>
