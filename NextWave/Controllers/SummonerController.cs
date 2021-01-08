@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using NextWave.Domain.RiotWebApi;
 using NextWave.Models;
 using NextWave.Services;
 
@@ -14,6 +15,13 @@ namespace NextWave.Controllers
 {
     public class SummonerController : Controller
     {
+        private readonly IRiotWebApi _riotWebApi;
+
+        public SummonerController(IRiotWebApi riotWebApi)
+        {
+            _riotWebApi = riotWebApi;
+        }
+
         [HttpGet]
         public IActionResult Search()
         {
@@ -21,20 +29,14 @@ namespace NextWave.Controllers
         }
 
         [HttpGet]
-        public IActionResult Find(string id)
+        public IActionResult Find(string name, string region)
         {
-            var uri = new Uri("https://ru.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + id +
-                              "?api_key=" + Config.ApiKey);
-            try
-            {
-                var response = new HttpClient().GetFromJsonAsync<Summoner>(uri);
-                ViewBag.Summoner = response.Result;
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-            }
+            var summoner = _riotWebApi.GetSummonerByName(name, region);
+            var leagues = _riotWebApi.GetLeaguesById(summoner.Id, region);
+            var matchHistory = _riotWebApi.GetMatchesById(summoner.AccountId, region);
+            ViewBag.Summoner = summoner;
+            ViewBag.Leagues = leagues;
+            ViewBag.MatchHistory = matchHistory;
             return View();
         }
     }
