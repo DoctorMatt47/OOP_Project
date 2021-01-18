@@ -1,18 +1,15 @@
-﻿#287390
-#01053c
-rgb(21 44 95)
-<div>
+﻿<div>
     @if (ViewBag.ChampionsStats == null)
     {
         <div>Champions stats is not found</div>
     }
     else
     {
-        <div class="flat-table" align="center">
-            <table style="width: 100%;">
+        <div class="flat-table">
+            <table>
                 <tbody>
                     <tr>
-                        <th>Image</th>
+                        <th style="width: 60px;">Image</th>
                         <th>Name</th>
                         <th>Pick rate</th>
                         <th>Win rate</th>
@@ -20,11 +17,12 @@ rgb(21 44 95)
                     </tr>
                     @foreach (var championStats in ViewBag.ChampionsStats)
                     {
+                        var imagePath = Convert.ToString("https://localhost:5001/images/champion/" + @championStats.Name + ".png");
                         var championPickRate = Math.Round(championStats.PickRate * 100, 3).ToString() + '%';
                         var championWinRate = Math.Round(championStats.WinRate * 100, 3).ToString() + '%';
                         var championBanRate = Math.Round(championStats.BanRate * 100, 3).ToString() + '%';
-                        <tr class="">
-                            <td></td>
+                        <tr>
+                            <td><img class="imageChampion" src="@imagePath" alt="@championStats.Name"/></td>
                             <td>@championStats.Name</td>
                             <td>@championPickRate</td>
                             <td>@championWinRate</td>

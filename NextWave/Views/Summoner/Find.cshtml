@@ -1,4 +1,7 @@
 ﻿@using NextWave.Models
+@*Summoner id : @ViewBag.Summoner.Id
+                Summoner puuid : @ViewBag.Summoner.Puuid
+                Summoner account id : @ViewBag.Summoner.AccountId*@
 <div>
     @if (ViewBag.Summoner == null)
     {
@@ -8,42 +11,82 @@
     }
     else
     {
-        <div>
-            Summoner name : @ViewBag.Summoner.Name<br>
-            Summoner level : @ViewBag.Summoner.SummonerLevel<br>
-            Summoner icon : @ViewBag.Summoner.ProfileIconId<br>
-            Summoner id : @ViewBag.Summoner.Id<br>
-            Summoner puuid : @ViewBag.Summoner.Puuid<br>
-            Summoner account id : @ViewBag.Summoner.AccountId<br>
-            @if (ViewBag.Leagues != null)
-            {
+        <div class="blockSummoner">
+            <div class="blockName">
+                <img class="imageIcon"
+                     style="margin-right: 20px;"
+                     src="@Convert.ToString("https://localhost:5001/images/profileIcon/" + @ViewBag.Summoner.ProfileIconId + ".png")"
+                     alt="@ViewBag.Summoner.ProfileIconId" />
+                <div class="blockInfo">
+                    <div class="size1">@ViewBag.Summoner.Name</div>
+                    <div>Summoner level : @ViewBag.Summoner.SummonerLevel</div>
+                </div>
+            </div>
+
+            <div class="blockBasicStats">
+                @{
+                    var wins = 0;
+                    var gamesCount = 0;
+                }
                 @foreach (var value in ViewBag.Leagues)
                 {
-                    <div>
-                        League queueType : @value.QueueType<br>
-                        League tier : @value.Tier<br>
-                        League rank : @value.Rank<br>
-                        League wins : @value.Wins<br>
-                        League losses : @value.Losses<br>
-                    </div>
+                    wins += value.Wins;
+                    gamesCount += value.Wins + value.Losses;
                 }
-            }
+                @if (gamesCount == 0)
+                {
+                    @:Game count: 0;
+                    @:WinRate: 0%
+                }
+                else
+                {
+                    var winRate = Math.Round(Convert.ToDouble(wins) / gamesCount * 100, 2);
+                    var winRateString = winRate + "%";
+                    @:Games count: @gamesCount<br>
+                    @:Win rate: @winRateString<br>
+                <progress max ="100" value="@Convert.ToInt32(winRate)"></progress>
+                }
+            </div>
+        </div>
+                @if (ViewBag.Leagues != null)
+                {
+                    @foreach (var value in ViewBag.Leagues)
+                    {
+                        <div>
+                            League queueType : @value.QueueType<br>
+                            League tier : @value.Tier<br>
+                            League rank : @value.Rank<br>
+                            League wins : @value.Wins<br>
+                            League losses : @value.Losses<br>
+                        </div>
+                    }
+                }
+                <div>
             @if (ViewBag.MatchHistory != null)
             {
-                <table>
-                    <tr>
-                        <th>GameId</th>
-                        <th>Champion</th>
-                        <th>Queue</th>
-                        <th>Season</th>
-                        <th>Role</th>
-                        <th>Lane</th>
-                    </tr>
-                    @foreach (var value in ViewBag.MatchHistory.Matches)
-                    {
-                        <tr><td>@value.GameId</td><td>@value.Champion</td><td>@value.Queue</td><td>@value.Season</td><td>@value.Role</td><td>@value.Lane</td></tr>
-                    }
-                </table>
+                <div class="flat-table" align="center">
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>GameId</th>
+                            <th>Champion</th>
+                            <th>Queue</th>
+                            <th>Season</th>
+                            <th>Role</th>
+                            <th>Lane</th>
+                        </tr>
+                        @foreach (var value in ViewBag.MatchHistory.Matches)
+                        {
+                            <tr>
+                                <td>@value.GameId</td>
+                                <td>@value.Champion</td>
+                                <td>@value.Queue</td>
+                                <td>@value.Season</td>
+                                <td>@value.Role</td>
+                                <td>@value.Lane</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
             }
         </div>
     }
