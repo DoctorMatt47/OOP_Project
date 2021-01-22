@@ -23,7 +23,6 @@ namespace NextWave.Domain.StatsParser
             doc.LoadHtml(htmlResult);
             var trNodes = doc.GetElementbyId("mainContent").ChildNodes[1].ChildNodes[1].ChildNodes[1]
                 .ChildNodes[1].ChildNodes.Where(x => x.Name == "tr");
-            var trNodeaebeab = trNodes.Count();
 
             return (
                 from trNode in trNodes
