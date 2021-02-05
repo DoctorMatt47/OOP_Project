@@ -14,5 +14,13 @@ namespace NextWave.Domain.Extensions
             string cleaned = new string(str.Where(x=> char.IsDigit(x) || x == '.').ToArray());
             return cleaned;
         }
+
+        public static string CutOffEnd(this string str, int countOfChars)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+            string cleaned = new string(str.Substring(0, str.Length - countOfChars).ToArray());
+            return cleaned;
+        }
+
     }
 }
