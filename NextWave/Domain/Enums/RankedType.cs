@@ -8,6 +8,6 @@ namespace NextWave.Domain.Enums
 {
     public enum RankedType
     {
-        RANKED_SOLO_5x5, RANKED_TEAM_5x5
+        RANKED_SOLO_5x5, RANKED_FLEX_SR
     }
 }
